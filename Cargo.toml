@@ -1,6 +1,13 @@
 [package]
 name = "rand-nla"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
+ndarray = "0.15"
+ndarray-linalg = { version = "0.16", feature = ["openblas-system"] }
+rand = "0.8"
+
+[dependencies.blas-src]
+version = "0.8"
+features = ["openblas"]
