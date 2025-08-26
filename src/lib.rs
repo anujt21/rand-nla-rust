@@ -1,5 +1,11 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use ndarray::Array1;
+use rand::Rng;
+
+fn random_vector_dot(n: usize) -> f64 {
+    let mut rng = rand::thread_rng();
+    let v1 = Array1::from_iter((0..n).map(|_| rng.gen::<f64>()));
+    let v2 = Array1::from_iter((0..n).map(|_| rng.gen::<f64>()));
+    v1.dot(&v2)
 }
 
 #[cfg(test)]
@@ -7,8 +13,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn test_dot() {
+        let res = random_vector_dot(5);
+        println!("Dot product: {}", res);
+        assert!(res.is_finite());
     }
 }
